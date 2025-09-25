@@ -78,8 +78,14 @@ VALIDATE $? "Install MongoDB client"
 
 #cat /var/log/shell-roboshop/catalogue.log | grep -A 20 "Load Catalogue Products"
 #mongosh --host mongodb.daws86s.sbs </app/db/master-data.js
-cat /var/log/shell-roboshop/catalogue.log | grep -A 20 "Load Catalogue Products"
-VALIDATE $? "Load Catalogue Products"
+#cat /var/log/shell-roboshop/catalogue.log | grep -A 20 "Load Catalogue Products"
+INDEX=$(mongosh mongodb.daws.86s.sbs --quiet --eval "db.getMongo().getDBNames().indexof('catalogue')")
+if [ $INDEX -le 0 ]; then
+  mongosh --host $MONGODB_HOST </app/db/master.data.js &>>$LOG_FILE
+  VALIDATE $? "Load Catalogue Products"
+else
+  echo -e "Catalogue products already loaded ... $Y SKIPPING $N"
+fi
 
 systemctl restart catalogue
 VALIDATE $? "Restarted catalogue"

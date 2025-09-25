@@ -9,7 +9,7 @@ N="\e[0m]"
 LOGS_FOLDER="/var/log/shell-roboshop"
 SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
 SCRIPT_DIR=$PWD
-MONGODB_HOST="mongodb.daws86s.sbs"
+MONGODB_HOST=mongodb.daws86s.sbs
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log" # /var/log/shell-roboshop/mongodb.sh
 
 mkdir -p "$LOGS_FOLDER"
@@ -76,7 +76,7 @@ VALIDATE $? "Copy mongo repo"
 dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "Install MongoDB client"
 
-mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
+mongosh --host mongodb.daws86s.sbs </app/db/master-data.js
 VALIDATE $? "Load catalogue products"
 
 systemctl restart catalogue

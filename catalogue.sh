@@ -77,7 +77,8 @@ dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "Install MongoDB client"
 
 #cat /var/log/shell-roboshop/catalogue.log | grep -A 20 "Load Catalogue Products"
-mongosh --host mongodb.daws86s.sbs </app/db/master-data.js
+#mongosh --host mongodb.daws86s.sbs </app/db/master-data.js
+cat /var/log/shell-roboshop/catalogue.log | grep -A 20 "Load Catalogue Products"
 VALIDATE $? "Load Catalogue Products"
 
 systemctl restart catalogue

@@ -76,7 +76,7 @@ VALIDATE $? "Copy mongo repo"
 dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "Install MongoDB client"
 
-mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
+cat /var/log/shell-roboshop/catalogue.log | grep -A 20 "Load Catalogue Products"
 VALIDATE $? "Load Catalogue Products"
 
 systemctl restart catalogue

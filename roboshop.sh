@@ -2,7 +2,7 @@
 
 AMI_ID="ami-09c813fb71547fc4f"
 SG_ID="sg-083d903c3fd30a343" # Replace with your SG ID
-instace=i-0a9ba711846c56d22
+instace="i-0a9ba711846c56d22"
 
 for instance in $@
 do

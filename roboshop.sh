@@ -5,13 +5,13 @@ SG_ID="sg-083d903c3fd30a343" # Replace with your SG ID
 
 for instance in $@
 do
-  INSTANCE_ID=$(aws ec2 run-instances --image-id ami-09c813fb71547fc4f --instance-type t3.micro --security-group-ids sg-083d903c3fd30a343 --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$instance}]" --query 'Reservations[0].Instances[0].PrivateIpAddress' --output text)
+  INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro --security-group-ids $SG_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$instance}]" --query 'Reservations[0].Instances[0].PrivateIpAddress' --output text)
 
   # if frontend is not there then it will take private IP
   if [ $instance != "frontend" ]; then
-      IP=$(aws ec2 describe-instances --instance-ids i-0a9ba711846c56d22 --query 'Reservations[0].Instances[0].PrivateIpAddress' --output text)
+      IP=$(aws ec2 describe-instances --instance-ids $instance --query 'Reservations[0].Instances[0].PrivateIpAddress' --output text)
   else
-      IP=$(aws ec2 describe-instances --instance-ids i-0a9ba711846c56d22 --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
+      IP=$(aws ec2 describe-instances --instance-ids $instance --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
   fi
 
   echo "$instance: $IP"

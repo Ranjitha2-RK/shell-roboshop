@@ -9,10 +9,10 @@ do
 
   # if frontend is not there then it will take private IP
   if [ $instance != "frontend" ]; then
-      IP=$(aws ec2 describe-instances --instance-ids i-0a9ba711846c56d22 --query 'Reservations[0].Instances[0].PrivateIpAddress' --output text)
+      IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[0].Instances[0].PrivateIpAddress' --output text)
 
   else
-      IP=$(aws ec2 describe-instances --instance-ids i-0a9ba711846c56d22 --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
+      IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
   
   fi
 

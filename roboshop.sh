@@ -1,7 +1,7 @@
 #!/bin/bash
 
 AMI_ID="ami-09c813fb71547fc4f"
-SG_ID="sg-07c8acf3fa6b923fa" # Replace with your SG ID
+SG_ID="sg-083d903c3fd30a343" # Replace with your SG ID
 
 for instance in $@
 do

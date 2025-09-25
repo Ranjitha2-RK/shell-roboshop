@@ -24,18 +24,18 @@ do
   --hosted-zone-id $ZONE_ID \
   --change-batch '
   {
-      "comment": "Updating record set"
-      ,"Change": [{
-      ,"Action"             : "UPSERT"
-      ,"ResouceRecordSet    : {
-          "Name"              : "'$RECORD_NAME'" 
-          ,"Type"             : "A"
-          ,"TTL"              : 1
-          ,"ResourceRecords"  : [{
-              "Value"         : "'$IP'"
-          }]
-      }               
-      }]
+    "comment": "Updating record set"
+    ,"Change": [{
+    ,"Action"             : "UPSERT"
+    ,"ResouceRecordSet    : {
+        "Name"              : "'$RECORD_NAME'" 
+        ,"Type"             : "A"
+        ,"TTL"              : 1
+        ,"ResourceRecords"  : [{
+            "Value"         : "'$IP'"
+        }]
+    }               
+    }]
   }
   '
 done

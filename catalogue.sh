@@ -77,11 +77,7 @@ dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "Install MongoDB client"
 
 mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
-if [ $? -ne 0 ]; then
-  echo -e "$2 ... $R is failure $N" | tee -a $LOG_FILE
-  echo "DEBUG: MongoDB connection or script load failed" | tee -a $LOG_FILE
-  exit 1
-fi
+VALIDATE $? "Load Catalogue Products"
 
 systemctl restart catalogue
 VALIDATE $? "Restarted catalogue"

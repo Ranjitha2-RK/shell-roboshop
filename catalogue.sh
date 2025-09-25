@@ -8,6 +8,7 @@ N="\e[0m]"
 
 LOGS_FOLDER="/var/log/shell-roboshop"
 SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
+SCRIPT_DIR=$PWD
 MONGODB_HOST=mongodb.daws86s.sbs
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log" # /var/log/shell-roboshop/mongodb.sh
 
@@ -54,7 +55,7 @@ VALIDATE $? "Unzip catalogue"
 npm install &>>$LOG_FILE
 VALIDATE $? "Install Dependencies"
 
-cp catalogue.service /etc/systemd/system/catalogue.service
+cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service
 VALIDATE $? "Copy systemctl service"
 
 systemctl daemon-reload

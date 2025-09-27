@@ -82,7 +82,7 @@ VALIDATE $? "Install MongoDB client"
 INDEX=$(mongosh $MONGODB_HOST --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
 
 if [ $INDEX -le 0 ]; then
-  mongosh --host $MONGODB_HOST </app/db/master.data.js &>>$LOG_FILE
+  mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
   VALIDATE $? "Load Catalogue Products"
 else
   echo -e "Catalogue products already loaded ... $Y SKIPPING $N"

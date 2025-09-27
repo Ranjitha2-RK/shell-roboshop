@@ -33,6 +33,9 @@ cp $SCRIPT_DIR/rabbitmq.repo
 
 dnf install rabbitmq-server -y
 
+systemctl enable rabbitmq-server
+systemctl start rabbitmq-server
+
 END_TIME=$(date +%s)
 TOTAL_TIME=$(( $END_TIME - $START_TIME ))
 echo  -e "Script executed in: $Y $TOTAL_TIME Seconds $N"

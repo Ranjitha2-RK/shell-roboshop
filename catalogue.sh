@@ -82,8 +82,6 @@ VALIDATE $? "Install MongoDB client"
 
 INDEX=$(mongosh --host $MONGODB_HOST --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
 
-sudo systemctl status mongod -l | tail -20
-
 if [ "$INDEX" -le 0 ]; then
   mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
   VALIDATE $? "Load Catalogue Products"

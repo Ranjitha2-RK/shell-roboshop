@@ -12,6 +12,7 @@ LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log" # /var/log/shell-roboshop/mongodb.sh
 START_TIME=$(date +%s)
 
 mkdir -p "$LOGS_FOLDER"
+SCRIPT_DIR=$(PWD)
 echo "Script started executed at: $(date)" | tee -a $LOG_FILE
 
 if [ $USERID -ne 0 ]; then
@@ -28,7 +29,9 @@ VALIDATE(){ #functions receive input through args just like shell script args
   fi
 }
 
+cp $SCRIPT_DIR/rabbitmq.repo
 
+dnf install rabbitmq-server -y
 
 END_TIME=$(date +%s)
 TOTAL_TIME=$(( $END_TIME - $START_TIME ))

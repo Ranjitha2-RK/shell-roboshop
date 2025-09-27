@@ -79,15 +79,10 @@ VALIDATE $? "Install MongoDB client"
 #cat /var/log/shell-roboshop/catalogue.log | grep -A 20 "Load Catalogue Products"
 #mongosh --host mongodb.daws86s.sbs </app/db/master-data.js
 #cat /var/log/shell-roboshop/catalogue.log | grep -A 20 "Load Catalogue Products"
-INDEX=$(mongosh --host $MONGODB_HOST --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
+INDEX=$(mongosh $MONGODB_HOST --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
 
-if [ -z "$INDEX" ]; then
-  echo -e "MongoDB query failed or returned nothing ... $R FAILURE $N" | tee -a $LOG_FILE
-  exit 1
-fi
-
-if [ "$INDEX" -le 0 ]; then
-  mongosh --host $MONGODB_HOST </app/schema/catalogue.js &>>$LOG_FILE
+if [ $INDEX -le 0 ]; then
+  mongosh --host $MONGODB_HOST </app/db/master.data.js &>>$LOG_FILE
   VALIDATE $? "Load Catalogue Products"
 else
   echo -e "Catalogue products already loaded ... $Y SKIPPING $N"

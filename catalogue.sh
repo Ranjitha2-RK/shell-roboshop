@@ -80,7 +80,7 @@ VALIDATE $? "Install MongoDB client"
 #mongosh --host mongodb.daws86s.sbs </app/db/master-data.js
 #cat /var/log/shell-roboshop/catalogue.log | grep -A 20 "Load Catalogue Products"
 
-INDEX=$(mongosh --host mongodb.daws86s.sbs --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
+INDEX=$(mongosh mongodb.daws86s.sbs --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
 
 if [ "$INDEX" -le 0 ]; then
   mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
